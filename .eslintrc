@@ -2,13 +2,10 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "html"
-  ],
+  "plugins": ["react", "prettier", "html"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -18,5 +15,10 @@
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
-  "extends": ["airbnb", "eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ]
 }

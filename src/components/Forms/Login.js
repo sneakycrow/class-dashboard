@@ -10,6 +10,11 @@ const Container = styled('div')`
   border-radius: 2px;
   width: 100%;
   background-color: ${pallette.yellow};
+  transition: box-shadow 0.1s linear;
+  border-bottom: 8px solid ${pallette.darkYellow};
+  &:focus-within {
+    box-shadow: 0 0 6px ${pallette.darkBlue};
+  }
 `;
 
 const Form = styled('form')`
@@ -55,7 +60,7 @@ const Icon = styled('i')`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  transition: background-color 0.1s linear;
+  transition: background-color 0.15s linear;
   background-color: ${pallette.purple};
 `;
 

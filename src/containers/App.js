@@ -13,6 +13,8 @@ injectGlobal`
     background-color: ${pallette.blue};
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 `;
 class App extends Component {

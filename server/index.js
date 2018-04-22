@@ -1,33 +1,23 @@
 const path = require('path');
 const express = require('express');
-const Sequelize = require('sequelize');
-
-require('dotenv').config();
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const apiRoutes = require('./routes');
 
 const app = express();
+app.use('/api', apiRoutes);
 const port = process.env.PORT || 3000;
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: 'mysql'
-  }
-);
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('/', (req, res) => res.send('Hello World'));
-
-sequelize
-  .authenticate()
+mongoose
+  .connect(process.env.MONGO_DB)
   .then(() => {
-    console.log('Connection has been established successfully.'); // eslint-disable-line no-console
+    console.log('Connected to MongoDB Atlas successfull'); // eslint-disable-line no-console
   })
   .catch(err => {
-    console.error('Unable to connect to database:', err); // eslint-disable-line no-console
+    console.warn('Connection to MongoDB Atlas refused, ', err); // eslint-disable-line no-console
   });
+app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.listen(
   port,

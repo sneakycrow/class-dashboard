@@ -42,5 +42,11 @@ module.exports = {
       template: './src/index.html'
     }),
     new ExtractTextPlugin({ filename: 'app.bundle.css', allChunks: true })
-  ]
+  ],
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, 'src/components'),
+      assets: path.resolve(__dirname, 'src/assets')
+    }
+  }
 };

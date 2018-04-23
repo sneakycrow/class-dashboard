@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const apiRoutes = require('./routes');
 
 const app = express();
-app.use('/api', apiRoutes);
 const port = process.env.PORT || 3000;
 
 mongoose
@@ -16,7 +15,10 @@ mongoose
   .catch(err => {
     console.warn('Connection to MongoDB Atlas refused, ', err); // eslint-disable-line no-console
   });
+
 app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api', apiRoutes);
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.listen(
